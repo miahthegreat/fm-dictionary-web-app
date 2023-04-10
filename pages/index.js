@@ -140,9 +140,12 @@ export default function Home() {
                           Synonyms
                         </p>
                         <div>
-                          {def.synonyms.map((syn) => {
+                          {def.synonyms.map((syn, idx) => {
                             return (
-                              <p className="font-bold text-accent-primary">
+                              <p
+                                key={idx}
+                                className="font-bold text-accent-primary"
+                              >
                                 {syn}
                               </p>
                             );
