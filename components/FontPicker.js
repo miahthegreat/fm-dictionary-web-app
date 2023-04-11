@@ -48,7 +48,7 @@ const FontPicker = () => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="absolute -right-24 md:right-0 z-10 mt-2 w-72 origin-top-right overflow-hidden rounded-md bg-neutral-100 dark:bg-primary-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Listbox.Options className="absolute -right-12 md:right-0 z-10 mt-2 w-48 md:w-72 origin-top-right overflow-hidden rounded-md bg-neutral-100 dark:bg-primary-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 {fontOptions.map((option) => (
                   <Listbox.Option
                     key={option.title}
@@ -77,7 +77,9 @@ const FontPicker = () => {
                           {selected ? (
                             <span
                               className={
-                                active ? "text-white" : "text-accent-primary"
+                                active
+                                  ? "text-primary-700 dark:text-neutral-100"
+                                  : "text-primary-700 dark:text-neutral-100"
                               }
                             >
                               <CheckIcon

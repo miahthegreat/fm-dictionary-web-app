@@ -44,17 +44,16 @@ export default function Home() {
         });
     }
   };
-
   return (
-    <main className="flex flex-col mx-auto w-full max-w-7xl min-h-screen p-6 sm:p-12 md:p-24 lg:p-48">
-      <div className="flex flex-col w-full gap-8">
-        <div className="flex items-center justify-between w-full px-6">
+    <main className="container">
+      <div className="container__sub">
+        <div className="header">
           <BookOpenIcon className="h-6 w-6 md:h-10 md:w-10 text-neutral-700 transition-colors duration-200 ease-in" />
           <FontPicker />
           <ThemeToggle />
         </div>
         <div>
-          <div className="relative flex items-center">
+          <div className="container__input">
             <input
               type="text"
               name="search"
@@ -72,11 +71,12 @@ export default function Home() {
               className="absolute py-2 rounded-full group right-5 px-2 focus:ring-2 focus:ring-inset focus:ring-accent-primary"
               onClick={() => getDefinition()}
             >
+              <span className="sr-only">Search Word</span>
               <MagnifyingGlassIcon className="h-6 w-6 text-accent-primary/80 group-hover:text-accent-primary transition-colors duration-200 ease-in" />
             </button>
           </div>
           {error && typeof error === "object" ? (
-            <div className="flex flex-col gap-8 items-center content-center pt-16 justify-center">
+            <div className="container__notfound">
               <p className="text-6xl">😕</p>
               <p className="font-bold text-xl">{error.title}</p>
               <p className="text-center text-lg text-neutral-700">
@@ -98,7 +98,28 @@ export default function Home() {
                   {definition.phonetic}
                 </p>
               </div>
-              <button type="button" onClick={() => {}}>
+              <button
+                type="button"
+                onClick={() => {
+                  const { phonetics } = definition;
+                  const findAudio = (arr) => {
+                    let result = null;
+                    for (const obj of arr) {
+                      if (obj.audio !== "") {
+                        result = obj;
+                        break;
+                      }
+                    }
+                    return result?.audio;
+                  };
+
+                  const audio = new Audio(findAudio(phonetics));
+                  if (audio) {
+                    audio.play();
+                  }
+                }}
+              >
+                <span className="sr-only">Play Word</span>
                 <PlayCircleIcon className="w-16 sm:w-32 md:w-48 aspect-1 text-accent-primary" />
               </button>
             </div>
@@ -152,7 +173,7 @@ export default function Home() {
             <div className="flex">
               <div className="flex-grow h-[1px] bg-neutral-500 dark:bg-primary-300 transition-colors duration-200 ease-in"></div>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-1 sm:gap-3">
               <span className="underline text-xs text-neutral-700">Source</span>
               <a
                 href={definition?.sourceUrls[0]}
@@ -164,6 +185,7 @@ export default function Home() {
                 <span>
                   <ArrowTopRightOnSquareIcon className="text-primary-500 group-hover:text-primary-700 h-4 w-4 dark:text-neutral-300 dark:group-hover:text-neutral-100 transition-colors duration-200 ease-in" />
                 </span>
+                <span className="sr-only">Choose Font</span>
               </a>
             </div>
           </div>
