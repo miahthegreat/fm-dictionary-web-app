@@ -31,7 +31,6 @@ const FontPicker = () => {
             <Listbox.Button className="inline-flex items-center rounded-md bg-transparent p-2 focus:outline-none focus:ring-2 focus:ring-accent-primary focus:ring-offset-2 focus:ring-offset-gray-50">
               <span className="sr-only">Change published status</span>
               <div className="inline-flex items-center gap-x-1.5 rounded-l-md bg-transparent px-3 py-2 text-primary-700 dark:text-neutral-100">
-                <CheckIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
                 <p className={`text-sm font-semibold ${font.class}`}>
                   {font.title}
                 </p>
@@ -49,7 +48,7 @@ const FontPicker = () => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right overflow-hidden rounded-md bg-neutral-100 dark:bg-primary-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Listbox.Options className="absolute -right-24 md:right-0 z-10 mt-2 w-72 origin-top-right overflow-hidden rounded-md bg-neutral-100 dark:bg-primary-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 {fontOptions.map((option) => (
                   <Listbox.Option
                     key={option.title}

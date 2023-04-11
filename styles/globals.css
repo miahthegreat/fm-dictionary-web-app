@@ -37,4 +37,8 @@
   src: url('../public/fonts/Lora-BoldItalic.ttf') format("ttf");
 }
 
+.input {
+  @apply block font-bold text-xl w-full placeholder:text-neutral-700 dark:placeholder:text-primary-300 bg-neutral-500 dark:bg-primary-700 rounded-2xl border-0 py-6 pr-14 pl-5 text-primary-900 dark:text-neutral-100 focus:ring-2 focus:ring-inset focus:ring-accent-primary transition-colors duration-200 ease-in
+}
+
 
